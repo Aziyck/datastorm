@@ -1,34 +1,14 @@
 Phyton libraries used:
-Package                   Version
-------------------------- -----------
-altgraph                  0.17.4
-contourpy                 1.3.3
-cycler                    0.12.1
-et_xmlfile                2.0.0
-fonttools                 4.60.1
-joblib                    1.5.2
-kiwisolver                1.4.9
-matplotlib                3.10.7
-numpy                     2.3.4
-openpyxl                  3.1.5
-packaging                 25.0
-pandas                    2.3.3
-patsy                     1.0.2
-pefile                    2023.2.7
-pillow                    12.0.0
-pip                       25.3
-pyinstaller               6.16.0
-pyinstaller-hooks-contrib 2025.9
-pyparsing                 3.2.5
-python-dateutil           2.9.0.post0
-pytz                      2025.2
-pywin32-ctypes            0.2.3
-scikit-learn              1.7.2
-scipy                     1.16.2
-seaborn                   0.13.2
-setuptools                80.9.0
-six                       1.17.0
-statsmodels               0.14.5
-threadpoolctl             3.6.0
-tzdata                    2025.2
-xlsxwriter                3.2.9
+| Library          | Rol principal                                           |
+| ---------------- | ------------------------------------------------------- |
+| **numpy**        | Calcul numeric și vectorizare rapidă                    |
+| **pandas**       | Manipulare de tabele și fișiere Excel/CSV               |
+| **matplotlib**   | Vizualizări grafice de bază                             |
+| **seaborn**      | Vizualizări statistice mai elegante                     |
+| **scipy**        | Funcții matematice avansate și metode statistice        |
+| **scikit-learn** | Machine Learning (Ridge, Lasso, Linear Regression etc.) |
+| **joblib**       | Salvare/încărcare modele ML (`.pkl`)                    |
+| **statsmodels**  | Modele statistice și regresii OLS                       |
+| **openpyxl**     | Citirea/scrierea fișierelor Excel (.xlsx)               |
+| **xlsxwriter**   | Formatare Excel (culori, tabele, celule verzi etc.)     |
+| **pillow**       | Manipulare de imagini (indirect folosit de Matplotlib)  |
