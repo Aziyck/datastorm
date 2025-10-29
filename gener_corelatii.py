@@ -27,8 +27,6 @@ cols_to_use = [
 ]
 all_cols = cols_to_use + ["PnL_net_index"]
 
-# Stil global
-sns.set(style="white", font_scale=0.8)
 
 # Parcurgem toate scenariile
 for scen in scenarios:
@@ -39,7 +37,7 @@ for scen in scenarios:
         df = df.dropna(subset=all_cols)
         corr = df[all_cols].corr().abs()
 
-        plt.figure(figsize=(12, 8))
+        plt.figure(figsize=(10, 8))
         sns.heatmap(corr, annot=True, fmt=".2f", cmap="crest", square=True)
         plt.title(f"Heatmap Corelații - Scenariul {scen}")
         plt.tight_layout()
