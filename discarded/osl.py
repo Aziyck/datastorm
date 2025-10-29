@@ -8,7 +8,7 @@ date_baza = pd.read_csv("csv/Date_Baza.csv")
 param_scen = pd.read_csv("csv/Parametri.csv")
 rez_scen = pd.read_csv("csv/Rezultate.csv")
 param_model = pd.read_csv("csv/Parametri_Model.csv")
-nim = pd.read_csv("csv/NIM_PD_LGD.csv")
+nim = pd.read_csv("csv/NIM_PD_LGD_Baza.csv")
 pnl = pd.read_csv("csv/PNL_Punti.csv")
 
 #Ce coloane vom folosi
@@ -35,7 +35,8 @@ all_cols = cols_to_use + ["PnL_net_index"]
 #Pregatim modelul
 data = nim.dropna(subset=all_cols)
 # X = data[cols_to_use]
-X = data[["Rata_politica_BNM_%","PIB_real_crestere_%", "IPC_medie_anuala_%", "NII_index", "PD_%"]]
+# X = data[["Rata_politica_BNM_%","PIB_real_crestere_%", "IPC_medie_anuala_%", "NII_index", "PD_%"]]
+X = data[cols_to_use]
 y = data["PnL_net_index"]
 
 X = sm.add_constant(X)
@@ -46,16 +47,17 @@ print(model.summary())
 # pd.set_option("display.max_rows", None)
 
 #Pregatim graficul de corelatii
-# numeric_data = data[all_cols]
-# corr = numeric_data.corr()
+numeric_data = data[all_cols]
+corr = numeric_data.corr().abs()
+
 
     #Aratam graficul de corelatii la consola
 # print("=== Matricea de corelații ===")
 # print(corr.round(2).to_string())  
 
     #Aratam graficul de corelatii la ecran
-# sns.heatmap(corr, annot=True, fmt=".2f", cmap="coolwarm")
-# plt.show()
+sns.heatmap(corr, annot=True, fmt=".2f", cmap="crest")
+plt.show()
 
 
 

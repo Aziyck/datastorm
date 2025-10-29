@@ -1,0 +1,53 @@
+               Feature       VIF
+0  PIB_real_crestere_%  1.971593
+1                NIM_%  1.971593
+
+=== Regressie Liniară (LOO-CV) ===
+R²: 0.964 | RMSE: 1.250
+                            OLS Regression Results
+==============================================================================
+Dep. Variable:          PnL_net_index   R-squared:                       0.971
+Model:                            OLS   Adj. R-squared:                  0.968
+Method:                 Least Squares   F-statistic:                     289.2
+Date:                Wed, 29 Oct 2025   Prob (F-statistic):           7.46e-14
+Time:                        01:41:41   Log-Likelihood:                -30.538
+No. Observations:                  20   AIC:                             67.08
+Df Residuals:                      17   BIC:                             70.06
+Df Model:                           2
+Covariance Type:            nonrobust
+=======================================================================================
+                          coef    std err          t      P>|t|      [0.025      0.975]
+---------------------------------------------------------------------------------------
+const                 -29.7307      3.985     -7.461      0.000     -38.138     -21.323
+PIB_real_crestere_%     0.6347      0.036     17.611      0.000       0.559       0.711
+NIM_%                  13.4403      0.829     16.204      0.000      11.690      15.190
+==============================================================================
+Omnibus:                        0.171   Durbin-Watson:                   1.752
+Prob(Omnibus):                  0.918   Jarque-Bera (JB):                0.054
+Skew:                           0.086   Prob(JB):                        0.973
+Kurtosis:                       2.811   Cond. No.                         168.
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+
+=== Ridge Regression ===
+R²: 0.873 | RMSE: 2.348
+Coeficienți: [ 0.45727061  0.14160463  0.15240439 -0.42958882 -0.06016145 -1.35412791
+  0.12756286 -0.01341311  0.44273954 -2.25971494  2.69731856 -2.12233339
+ -0.49157463 -0.75915721  0.33066511]
+Intercept: 19.612418550777775
+
+=== Lasso Regression ===
+R²: 0.953 | RMSE: 1.437
+Coeficienți: [-0.00000000e+00  1.52856030e-02  3.75020488e-02 -0.00000000e+00
+ -0.00000000e+00 -0.00000000e+00  8.87497860e-02 -3.27822606e-03
+  0.00000000e+00 -5.10472732e-01  6.40876410e+00 -3.24473692e+00
+ -0.00000000e+00 -0.00000000e+00  3.52223679e-01]
+Intercept: -17.218794507103365
+
+=== Comparatie modele (LOO-CV) ===
+    Model        R²      RMSE
+0  Linear  0.964035  1.250349
+1   Ridge  0.873153  2.348169
+2   Lasso  0.952504  1.436877

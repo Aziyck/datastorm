@@ -1,0 +1,56 @@
+               Feature       VIF
+0  PIB_real_crestere_%  1.622344
+1              Somaj_%  6.231754
+2      Cost_depozite_%  2.358216
+3                NIM_%  6.532269
+
+=== Regressie Liniară (LOO-CV) ===
+R²: 0.967 | RMSE: 1.147
+                            OLS Regression Results
+==============================================================================
+Dep. Variable:          PnL_net_index   R-squared:                       0.985
+Model:                            OLS   Adj. R-squared:                  0.981
+Method:                 Least Squares   F-statistic:                     242.4
+Date:                Wed, 29 Oct 2025   Prob (F-statistic):           1.97e-13
+Time:                        00:45:23   Log-Likelihood:                -23.310
+No. Observations:                  20   AIC:                             56.62
+Df Residuals:                      15   BIC:                             61.60
+Df Model:                           4
+Covariance Type:            nonrobust
+=======================================================================================
+                          coef    std err          t      P>|t|      [0.025      0.975]
+---------------------------------------------------------------------------------------
+const                  10.8121      6.622      1.633      0.123      -3.301      24.926
+PIB_real_crestere_%     0.6067      0.028     21.624      0.000       0.547       0.666
+Somaj_%                -2.1940      0.462     -4.744      0.000      -3.180      -1.208
+Cost_depozite_%        -0.9310      0.152     -6.141      0.000      -1.254      -0.608
+NIM_%                   6.6722      1.214      5.497      0.000       4.085       9.259
+==============================================================================
+Omnibus:                        1.151   Durbin-Watson:                   2.069
+Prob(Omnibus):                  0.562   Jarque-Bera (JB):                0.415
+Skew:                           0.348   Prob(JB):                        0.812
+Kurtosis:                       3.118   Cond. No.                         337.
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+
+=== Ridge Regression ===
+R²: 0.888 | RMSE: 2.107
+Coeficienți: [ 0.48830838  0.43856881  0.06925334 -1.63693067  0.14649033 -0.87088547
+  0.06684379 -0.03233669  0.22383658 -2.26617198  2.46933212 -0.70011868
+ -0.15165298 -0.26504318  0.17713933]
+Intercept: 18.2290390865095
+
+=== Lasso Regression ===
+R²: 0.918 | RMSE: 1.800
+Coeficienți: [ 0.          0.6038117  -0.         -1.96554597  0.         -0.
+  0.         -0.03999248  0.         -1.02361541  4.57837128 -0.
+ -0.         -0.          0.09579229]
+Intercept: 11.328126129077631
+
+=== Comparatie modele (LOO-CV) ===
+    Model        R²      RMSE
+0  Linear  0.966704  1.147330
+1   Ridge  0.887747  2.106646
+2   Lasso  0.918077  1.799687

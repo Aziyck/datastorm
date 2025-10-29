@@ -1,0 +1,262 @@
+🧩 1️⃣. Scopul proiectului tău
+
+Tu ai ales problema „Simularea scenariilor macroeconomice asupra sistemului bancar”, deci scopul tău este:
+
+Să modelezi cum evoluează profitabilitatea (PnL_net_index) unei bănci în funcție de variabile macroeconomice (PIB, inflație, rata BNM, șomaj etc.) pentru 3 scenarii: optimist, pesimist și criză.
+
+🧠 2️⃣. Ideea generală
+
+Tu ai deja datele istorice (2019–2024) pentru fiecare scenariu și indicatori asociați.
+Ce poți face este:
+
+să alegi una sau două ecuații de regresie econometrică, unde:
+
+variabila dependentă (Y) = profitabilitatea băncii (ex. PnL_net_index sau NIM_%);
+
+variabile independente (X) = indicatori macroeconomici (PIB_real_creștere_%, Rata_politica_BNM_%, IPC_medie_anuala_%, Șomaj_%, Remitente_YoY_% etc.).
+
+📊 3️⃣. Exemplu de model de regresie
+
+Poți începe cu un model simplu:
+
+𝑃
+𝑛
+𝐿
+𝑡
+=
+𝛼
++
+𝛽
+1
+⋅
+𝑃
+𝐼
+𝐵
+𝑡
++
+𝛽
+2
+⋅
+𝐼
+𝑃
+𝐶
+𝑡
++
+𝛽
+3
+⋅
+𝑅
+𝑎
+𝑡
+𝑎
+𝐵
+𝑁
+𝑀
+𝑡
++
+𝛽
+4
+⋅
+𝑆
+𝑜
+𝑚
+𝑎
+𝑗
+𝑡
++
+𝜀
+𝑡
+PnL
+t
+	​
+
+=α+β
+1
+	​
+
+⋅PIB
+t
+	​
+
++β
+2
+	​
+
+⋅IPC
+t
+	​
+
++β
+3
+	​
+
+⋅RataBNM
+t
+	​
+
++β
+4
+	​
+
+⋅Somaj
+t
+	​
+
++ε
+t
+	​
+
+
+sau, dacă vrei să modelezi eficiența dobânzilor:
+
+𝑁
+𝐼
+𝑀
+𝑡
+=
+𝛼
++
+𝛽
+1
+⋅
+𝑅
+𝑎
+𝑡
+𝑎
+𝐵
+𝑁
+𝑀
+𝑡
++
+𝛽
+2
+⋅
+𝐼
+𝑃
+𝐶
+𝑡
++
+𝛽
+3
+⋅
+𝑃
+𝐼
+𝐵
+𝑡
++
+𝜀
+𝑡
+NIM
+t
+	​
+
+=α+β
+1
+	​
+
+⋅RataBNM
+t
+	​
+
++β
+2
+	​
+
+⋅IPC
+t
+	​
+
++β
+3
+	​
+
+⋅PIB
+t
+	​
+
++ε
+t
+	​
+
+
+Ideea: vezi cum fiecare factor macroeconomic influențează profitul băncii.
+
+🧮 4️⃣. Pașii practici (în Python)
+
+Importă datele (deja le ai în nim_table.csv sau pnl_table.csv).
+
+Selectează doar scenariul „Bază” (poți extinde ulterior la toate).
+
+Rulează o regresie OLS cu statsmodels:
+
+import pandas as pd
+import statsmodels.api as sm
+
+df = pd.read_csv("pnl_table.csv")
+base = df[df["Scenariu"] == "Bază"]
+
+X = base[["PIB_real_creștere_%", "Rata_politica_BNM_%", "IPC_medie_anuala_%", "Șomaj_%"]]
+y = base["PnL_net_index"]
+
+X = sm.add_constant(X)
+model = sm.OLS(y, X).fit()
+print(model.summary())
+
+
+Așa obții coeficienții α și β (parametrii modelului) + R² și semnificația lor.
+
+📈 5️⃣. După regresie
+
+Interpretează semnele coeficienților:
+
+β₁ > 0 → creșterea PIB crește profitul băncii.
+
+β₂ < 0 → inflația mare reduce profitul.
+
+β₃ > 0 sau < 0 → depinde de cum reacționează marjele la dobânda BNM.
+
+β₄ < 0 → șomajul ridicat reduce profitul.
+
+Verifică semnificația statistică (p-values < 0.05).
+
+📏 6️⃣. Intervalul de încredere
+
+După ce ai modelul, poți calcula intervalele de încredere (95%) pentru fiecare coeficient sau pentru o predicție viitoare:
+
+model.conf_int(alpha=0.05)
+pred = model.get_prediction(X)
+pred.summary_frame(alpha=0.05)
+
+
+Poți arăta un grafic cu valorile simulate + intervalul (zona umbrită) — foarte bine văzut de juriu.
+
+⚙️ 7️⃣. Extindere: simularea scenariilor
+
+După ce ai estimat coeficienții pe scenariul Bază, poți aplica aceiași coeficienți la datele din scenariile „Optimist”, „Pesimist”, „Criză” și vezi cum se schimbă profitul estimat.
+Asta arată robustețea modelului și impactul macroeconomic asupra profitabilității.
+
+🧾 8️⃣. Structura finală de prezentare (pentru DataStorm)
+
+Titlu + scopul proiectului
+
+Date și surse
+
+Metodologie – modelul de regresie, ecuația
+
+Rezultate + interpretări
+
+Simulare scenarii
+
+Intervale de încredere / testare sensibilitate
+
+Concluzii și recomandări (economic)
+
+de exemplu: „Profitabilitatea bancară scade cu 0.8 p.p. pentru fiecare creștere de 1% a ratei BNM în scenariul pesimist”.
+
+Dacă vrei, pot:
+
+să te ajut să alegem exact variabilele X potrivite (adică cele care dau un model semnificativ),
+
+să scriem ecuația finală cu coeficienții reali (după ce rulăm regresia),
+
+și să facem graficul intervalului de încredere.
