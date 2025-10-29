@@ -14,7 +14,7 @@ import joblib
 # =============================
 
 # --- Vizualizeaza ---
-visualise = False
+visualise = True
 
 # --- Alegere dataset ---
 # 1 - Baza
@@ -184,7 +184,7 @@ if (visualise):
     ax2.set_ylim(0, max(results['RMSE'])*1.2)  # limite corecte
 
     # Titlu + grid ușor
-    plt.title('Comparatie modele: R² vs RMSE')
+    plt.title(f'Comparatie modele: R² vs RMSE\n pe Scenariul {chosen_scenario}')
     ax1.grid(True, axis='y', linestyle='--', alpha=0.6)
 
     # Legende combinate
@@ -205,7 +205,7 @@ if (visualise):
     y_pred_ridge = ridge.predict(X_ridge)
     y_pred_lasso = lasso.predict(X_lasso)
 
-    plt.figure(figsize=(7,7))
+    plt.figure(figsize=(8,8))
 
     # Linear
     plt.scatter(y, y_pred_lin, color='blue', label='Linear', alpha=0.7)
@@ -221,7 +221,7 @@ if (visualise):
 
     plt.xlabel('Valori reale')
     plt.ylabel('Predicții')
-    plt.title('Comparatie predicții vs valori reale: Linear, Ridge, Lasso')
+    plt.title(f'Comparație Predicții vs Valori Reale\n(Pe valori deja luate în considerare de Model):\nLinear, Ridge, Lasso\npe Scenariul {chosen_scenario}')
     plt.legend()
     plt.grid(alpha=0.3)
     plt.show()
@@ -240,7 +240,8 @@ if (visualise):
 
     coef_df = coef_df.set_index('Feature')
 
-    plt.figure(figsize=(8,6))
+    plt.figure(figsize=(10,8))
     sns.heatmap(coef_df, annot=True, cmap='coolwarm', center=0)
-    plt.title('Coeficienti modele: Linear, Ridge, Lasso')
+    plt.title(f'Coeficienti modele: Linear, Ridge, Lasso\n pe Scenariul {chosen_scenario}')
+    plt.subplots_adjust(left=0.25) 
     plt.show()

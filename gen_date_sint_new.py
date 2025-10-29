@@ -9,7 +9,7 @@ np.random.seed(69)
 # 2 - Criza
 # 3 - Optimist
 # 4 - Pesimist
-dataset_choice = 4  # 🔹 Schimbă aici setul de date
+dataset_choice = 2  # 🔹 Schimbă aici setul de date
 
 
 # --- Date istorice ---

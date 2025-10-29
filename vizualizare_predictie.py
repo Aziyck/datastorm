@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 np.random.seed(69)
 
 # --- Cat de multe date sa prezicem ---
-vals = 20
+vals = 100
 
 # --- Alegere dataset ---
 # 1 - Baza
@@ -281,7 +281,7 @@ plt.plot([y.min(), y.max()], [y.min(), y.max()], 'r--', label='Ideal', linewidth
 
 plt.xlabel('Valori reale PnL_net_index')
 plt.ylabel('Predicții PnL_net_index')
-plt.title(f'Comparatie predicții vs valori reale: Linear, Ridge, Lasso pe Secenariu {chosen_scenario}')
+plt.title(f'Comparatie Predicții vs Valori Reale:\nLinear, Ridge, Lasso \npe Secenariul {chosen_scenario}')
 plt.legend()
 plt.grid(alpha=0.3)
 plt.show()
