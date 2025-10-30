@@ -14,7 +14,7 @@ vals = 100
 # 2 - Criza
 # 3 - Optimist
 # 4 - Pesimist
-dataset_choice = 4 # 🔹 Schimbă aici setul de date
+dataset_choice = 3 # 🔹 Schimbă aici setul de date
 
 
 # --- Date istorice ---

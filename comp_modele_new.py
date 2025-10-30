@@ -21,7 +21,7 @@ visualise = True
 # 2 - Criza
 # 3 - Optimist
 # 4 - Pesimist
-scenario = 4
+scenario = 1
 
 
 scenario_map = {
@@ -60,13 +60,13 @@ X = data[[
     # "Rata_politica_BNM_%", 
     "PIB_real_crestere_%", 
     # "IPC_medie_anuala_%", 
-    # "Somaj_%",
+    "Somaj_%",
     # "Curs_MDL_pe_USD", 
     # "Remitente_USD_mld", 
     # "FX_YoY_%", 
     # "Remitente_YoY_%",
     # "Randament_active_%", 
-    # "Cost_depozite_%", 
+    "Cost_depozite_%", 
     "NIM_%", 
     # "PD_%", 
     # "LGD_%", 
@@ -107,6 +107,7 @@ def loo_cv(model, X, y):
 lin_reg = LinearRegression()
 r2_lin, rmse_lin, _, _ = loo_cv(lin_reg, X, y)
 
+lin_reg.fit(X,y)
 X2 = sm.add_constant(X)
 model_sm = sm.OLS(y, X2).fit()
 
